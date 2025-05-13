@@ -9,12 +9,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 
 
-export const EarnPage = async () => {
-  const session = await getServerSession(authOptions);
-
-  if (!session) {
-    redirect("/login");
-  }
+export const EarnPage = ({ session } : any) => {
   const webcamRef = useRef<Webcam>(null);
   const [model, setModel] = useState<any>(null);
   const [label, setLabel] = useState('Loading...');
@@ -38,6 +33,8 @@ export const EarnPage = async () => {
     return () => clearInterval(interval);
   }, [model]);
 
+  const [awarded, setAwarded] = useState(false); // 🟡 New: prevent repeat awards
+
   const detect = async () => {
     if (
       model &&
@@ -48,8 +45,40 @@ export const EarnPage = async () => {
       const top = predictions.reduce((a: any, b: any) =>
         a.probability > b.probability ? a : b
       );
+      const recyclable = top.className === 'Recyclable';
       setLabel(`${top.className} (${Math.round(top.probability * 100)}%)`);
-      setIsRecyclable(top.className === 'Recyclable');
+      setIsRecyclable(recyclable);
+
+      if (recyclable && !awarded) {
+        try {
+          const token = localStorage.getItem("token");
+          if (!token) {
+            console.warn("No auth token found");
+            return;
+          }
+
+          const res = await fetch('/api/points', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: session.user.email,
+              points: 10
+            }),
+          });
+
+          const data = await res.json();
+          console.log("Points awarded:", data);
+
+          // ✅ Prevent spamming
+          setAwarded(true);
+          setTimeout(() => setAwarded(false), 8000); // Allow new award after 8s
+
+        } catch (err) {
+          console.error("Failed to award points", err);
+        }
+      }
     }
   };
   return (
@@ -67,7 +96,7 @@ export const EarnPage = async () => {
             height="100%"
             videoConstraints={{ facingMode: 'environment' }}
           />
-          <h2>{label}</h2>
+          {/* <h2>{label}</h2> */}
           <div className={`${isRecyclable ? "bg-green-400" : "bg-red-400"} absolute bottom-3 p-2 text-white font-semibold rounded-xl left-3 px-3 w-max`}>
             {isRecyclable === true ? <h3>Recyclable</h3> : <h3>Not Recyclable</h3>}
           </div>
