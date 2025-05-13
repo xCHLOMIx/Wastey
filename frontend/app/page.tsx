@@ -46,7 +46,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="w-[400px] rounded-2xl bg-amber-300 overflow-hidden h-max relative">
+      <div className="w-[300px] rounded-2xl bg-amber-300 overflow-hidden h-max relative">
         <Webcam
           ref={webcamRef}
           audio={false}
