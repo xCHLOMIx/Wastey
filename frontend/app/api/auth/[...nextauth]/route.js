@@ -1,9 +1,9 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { connectDB } from "@/lib/mongodb";
-import User from "@/models/User"; // safe here, server only
+import User from "@/models/User";
 
-export const authOptions = {
+const handler = NextAuth({
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -14,8 +14,8 @@ export const authOptions = {
     async signIn({ user }) {
       await connectDB();
 
-      // Create user if they don't exist
       const existingUser = await User.findOne({ email: user.email });
+
       if (!existingUser) {
         await User.create({
           email: user.email,
@@ -27,13 +27,15 @@ export const authOptions = {
       return true;
     },
     async session({ session }) {
+      await connectDB(); // optional but safe in case not connected
       const dbUser = await User.findOne({ email: session.user.email });
-      session.user.id = dbUser._id;
+
+      session.user.id = dbUser._id.toString(); // ensure it's a string
       session.user.points = dbUser.points;
+
       return session;
     },
   },
-};
+});
 
-const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
