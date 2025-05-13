@@ -3,4 +3,8 @@
 
 @theme {
   --font-space: 'Space Grotesk';
+  --color-bg: #242434;
+  --color-altbg: #3A3A48;
+  --color-stroke: #686897;
+  --color-altstroke: #3F3F5A;
 }
