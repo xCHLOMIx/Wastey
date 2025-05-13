@@ -8,7 +8,6 @@ export default async function Home() {
 
   if (!session) {
     redirect("/");
-  }
-
+    }
   return <EarnPage/>;
 }
