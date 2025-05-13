@@ -5,6 +5,8 @@ import { HiOutlineTrophy } from 'react-icons/hi2';
 import { LuGift } from 'react-icons/lu';
 import { RiCopperCoinFill } from 'react-icons/ri';
 import { LuLogOut } from "react-icons/lu";
+import Link from 'next/link';
+import { signOut } from 'next-auth/react';
 
 interface Link {
     icon: any,
@@ -26,13 +28,15 @@ const Sidebar = () => {
                     <h1 className='text-3xl text-white font-bold'>Wastey</h1>
                 </div><br />
                 {links.map((link) => (
-                    <div key={link.text} className={`text-white ${theLink?.includes(link.text) ? "bg-altbg border-stroke" : "hover:bg-altbg/40"} transition duration-300 p-5 cursor-pointer rounded-2xl border-2 border-bg flex gap-6`}>
+                    <Link href={`/${link.text}`} key={link.text}>
+                    <div className={`text-white ${theLink?.includes(link.text) ? "bg-altbg border-stroke" : "hover:bg-altbg/40"} transition duration-300 p-5 cursor-pointer rounded-2xl border-2 border-bg flex gap-6`}>
                         {link.icon}
                         <h2>{`${link.text}`.toUpperCase()}</h2>
                     </div>
+                    </Link>
                 ))}
             </div>
-            <div className={`text-white transition duration-300 hover:bg-altbg/40 p-5 cursor-pointer rounded-2xl border-2 border-bg flex gap-6`}>
+            <div onClick={() => signOut()} className={`text-white transition duration-300 hover:bg-altbg/40 p-5 cursor-pointer rounded-2xl border-2 border-bg flex gap-6`}>
                 <LuLogOut size={24} />
                 <h2>Log out</h2>
             </div>
