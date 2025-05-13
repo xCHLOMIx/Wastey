@@ -6,6 +6,7 @@ import * as tmImage from '@teachablemachine/image';
 import Webcam from 'react-webcam';
 import { useRouter } from 'next/navigation'; // ✅ import useRouter
 import { redirect } from 'next/navigation';
+import { FaCircleCheck } from 'react-icons/fa6';
 
 const EarnPage = () => {
   const { data: session, status } = useSession();
@@ -64,7 +65,7 @@ const EarnPage = () => {
           const data = await res.json();
           console.log("Points awarded:", data);
           setAwarded(true);
-          setTimeout(() => setAwarded(false), 10000);
+          setTimeout(() => setAwarded(false), 8000);
         } catch (err) {
           console.error("Failed to award points", err);
         }
@@ -80,13 +81,12 @@ const EarnPage = () => {
 
   return (
     <div className="h-full">
-      <div className="flex flex-col gap-10 justify-center h-full items-center">
+      <div className="flex flex-col gap-4 justify-center h-full items-center">
         <h1 className="text-3xl text-white font-semibold">
           Scan to earn 👌
         </h1>
-        <div className="w-xl rounded-2xl bg-amber-300 overflow-hidden h-xl relative">
-          {
-            !awarded &&
+        {!awarded &&
+          <div className="w-xl rounded-2xl bg-amber-300 overflow-hidden h-xl relative">
             <Webcam
               ref={webcamRef}
               audio={false}
@@ -95,12 +95,18 @@ const EarnPage = () => {
               height="100%"
               videoConstraints={{ facingMode: 'environment' }}
             />
-          }
-          { awarded && <p>Nice</p>}
-          <div className={`${isRecyclable ? "bg-green-400" : "bg-red-400"} absolute bottom-3 p-2 text-white font-semibold rounded-xl left-3 px-3 w-max`}>
-            {isRecyclable === true ? <h3>Recyclable</h3> : <h3>Not Recyclable</h3>}
+            <div className={`${isRecyclable ? "bg-green-400" : "bg-red-400"} absolute bottom-3 p-2 text-white font-semibold rounded-xl left-3 px-3 w-max`}>
+              {isRecyclable === true ? <h3>Recyclable</h3> : <h3>Not Recyclable</h3>}
+            </div>
           </div>
-        </div>
+        }
+        {awarded && <div className='flex flex-col gap-2'>
+          <FaCircleCheck size={150} className='text-green-400' />
+          <div className='text-white text-center'>
+            <p>Points awarded 😉</p>
+            <p>Thanks 😊</p>
+          </div>
+        </div>}
       </div>
     </div>
   );
