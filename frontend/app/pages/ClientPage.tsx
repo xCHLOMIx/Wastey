@@ -2,6 +2,7 @@
 import Webcam from "react-webcam";
 import React, { useRef, useEffect, useState } from "react";
 import * as tmImage from "@teachablemachine/image";
+import { signOut } from "next-auth/react";
 
 export default function ClientPage() {
   const webcamRef = useRef<Webcam>(null);
@@ -44,6 +45,17 @@ export default function ClientPage() {
 
   return (
     <div>
+      {/* logout */}
+      <div className="flex justify-end">
+        <button
+          className="bg-red-500 text-white px-4 py-2 rounded-lg"
+          onClick={() => {
+            signOut()
+          }}
+        >
+          Logout
+        </button>
+        </div>
       <div className="w-[300px] rounded-2xl bg-amber-300 overflow-hidden h-max relative">
         <Webcam
           ref={webcamRef}
@@ -53,6 +65,9 @@ export default function ClientPage() {
           height="100%"
           videoConstraints={{ facingMode: "environment" }}
         />
+        {/* points */}
+        
+
         <div
           className={`${
             isRecyclable ? "bg-green-400" : "bg-red-400"
