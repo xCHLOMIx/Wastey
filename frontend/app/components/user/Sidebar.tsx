@@ -7,6 +7,7 @@ import { RiCopperCoinFill } from 'react-icons/ri';
 import { LuLogOut } from "react-icons/lu";
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
+import Image from 'next/image';
 
 interface Link {
     icon: any,
@@ -30,14 +31,15 @@ const Sidebar = () => {
     return (
         <div className='max-sm:-translate-x-full transition duration-300 max-sm:absolute h-screen z-10 bg-bg border-r-3 min-w-80 flex flex-col justify-between border-altstroke p-8'>
             <div className='flex flex-col gap-3'>
-                <div className="">
+                <div className="flex gap-2">
+                    <Image src="/logo.png" alt='logo' width={32} height={24} />
                     <h1 className='text-3xl text-white font-bold'>Wastey</h1>
                 </div><br />
                 {links.map((link) => (
                     <Link href={`/${link.text}`} key={link.text}>
                     <div className={`text-white ${theLink?.includes(link.text) ? "bg-altbg border-stroke" : "hover:bg-altbg/40"} transition duration-300 p-5 cursor-pointer rounded-2xl border-2 border-bg flex gap-6`}>
                         {link.icon}
-                        <h2>{`${link.text}`.toUpperCase()}</h2>
+                        <h2 className='capitalize'>{`${link.text}`}</h2>
                     </div>
                     </Link>
                 ))}

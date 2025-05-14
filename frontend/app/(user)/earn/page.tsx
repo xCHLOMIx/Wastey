@@ -80,11 +80,11 @@ const EarnPage = () => {
     }
   };
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push('/');
-    }
-  }, [status, router]);
+  // useEffect(() => {
+  //   if (status === "unauthenticated") {
+  //     router.push('/');
+  //   }
+  // }, [status, router]);
 
   return (
     <div className="h-full">

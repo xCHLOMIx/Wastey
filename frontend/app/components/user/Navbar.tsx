@@ -31,10 +31,13 @@ const Navbar = () => {
         </div>
         <h1 className='text-3xl text-white font-bold capitalize'>{thePage.replace('/', '').toLowerCase()}</h1>
       </div>
-      <div>
+      <div className='flex gap-5 items-center'>
         <div className='flex gap-2 bg-white/5 p-3 rounded-2xl'>
           <Image src="/point.png" alt='points' width={24} height={24} />
           <span className='font-semibold text-white'>{session?.user?.points}</span>
+        </div>
+        <div className='w-11 p-1 rounded-full h-11'>
+          <Image src={session?.user?.image} height={32} width={32} />
         </div>
       </div>
     </div>
