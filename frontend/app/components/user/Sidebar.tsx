@@ -1,6 +1,6 @@
 "use client"
 import { usePathname } from 'next/navigation';
-import React from 'react'
+import React, { useState } from 'react'
 import { HiOutlineTrophy } from 'react-icons/hi2';
 import { LuGift } from 'react-icons/lu';
 import { RiCopperCoinFill } from 'react-icons/ri';
@@ -21,8 +21,14 @@ const links: Link[] = [
 
 const Sidebar = () => {
     const theLink = usePathname()
+    const [sidebar, setSidebar] = useState<boolean>(false);
+
+    // const toggleSidebar = () => {
+    //     setSidebar(!sidebar);
+    // }
+
     return (
-        <div className='max-sm:-translate-x-full max-sm:absolute h-screen z-10 bg-bg border-r-3 min-w-80 flex flex-col justify-between border-altstroke p-8'>
+        <div className='max-sm:-translate-x-full transition duration-300 max-sm:absolute h-screen z-10 bg-bg border-r-3 min-w-80 flex flex-col justify-between border-altstroke p-8'>
             <div className='flex flex-col gap-3'>
                 <div className="">
                     <h1 className='text-3xl text-white font-bold'>Wastey</h1>

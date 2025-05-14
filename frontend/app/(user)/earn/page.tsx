@@ -80,11 +80,11 @@ const EarnPage = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (status === "unauthenticated") {
-  //     router.push('/');
-  //   }
-  // }, [status, router]);
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push('/');
+    }
+  }, [status, router]);
 
   return (
     <div className="h-full">
@@ -129,7 +129,6 @@ const EarnPage = () => {
             <span className='text-white/50 font-bold text-xl text-center'>Here are your current <br /> points</span>
             <span className='text-3xl font-bold text-white'>
               {session?.user.points}
-              400
             </span>
             <div>
               <Image src="/coins.png" alt='points' width={240} height={240} />
