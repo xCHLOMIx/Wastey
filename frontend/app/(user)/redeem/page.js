@@ -26,6 +26,11 @@ const page = () => {
     },
   ];
   const handleRedeem = async (reward) => {
+    if (session?.user?.points < reward.points) {
+      alert("You don't have enough points to redeem this reward.");
+      return;
+      
+    }
     // Handle redeeming the reward
     try {
       const res = await fetch('/api/points', {
