@@ -3,7 +3,7 @@ import "./globals.css";
 import AuthProvider from "./providers/AuthProvider";
 
 export const metadata = {
-  title: "Create Next App",
+  title: "Wastey",
   description: "Wastey",
 };
 

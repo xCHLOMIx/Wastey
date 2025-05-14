@@ -40,7 +40,10 @@ export default function Login() {
   return (
     //login using google and redirect to home page
     <div className="flex bg-bg flex-col text-white justify-center gap-3 items-center h-screen">
-      <h1 className="text-6xl font-bold">Welcome to Wastey</h1>
+      <div className="flex flex-col items-center gap-2">
+        <Image src="/logo.png" alt="Logo" width={150} height={150} />
+        <h1 className="text-6xl font-bold">Welcome to Wastey</h1>
+      </div>
       <div>
         <p className="text-white/80">
           The world is not that clean and we can make it cleaner.
@@ -50,7 +53,7 @@ export default function Login() {
         </p>
       </div>
       <button
-        className=" text-white flex gap-3 rounded-xl items-center cursor-pointer hover:bg-white hover:text-black transition duration-300 border my-3 px-4 font-semibold py-3"
+        className=" text-white flex gap-3 mt-10 rounded-xl items-center cursor-pointer hover:bg-white hover:text-black transition duration-300 border my-3 px-4 font-semibold py-3"
         onClick={() => signIn("google")}
       >
         <Image src="/123.png" alt="Google" width={26} height={26} />

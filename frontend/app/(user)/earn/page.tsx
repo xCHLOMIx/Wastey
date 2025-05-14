@@ -7,6 +7,8 @@ import Webcam from 'react-webcam';
 import { useRouter } from 'next/navigation'; // ✅ import useRouter
 import { redirect } from 'next/navigation';
 import { FaCircleCheck } from 'react-icons/fa6';
+import Image from 'next/image';
+import { div } from '@tensorflow/tfjs';
 
 const EarnPage = () => {
   const { data: session, status } = useSession();
@@ -16,6 +18,7 @@ const EarnPage = () => {
   const [isRecyclable, setIsRecyclable] = useState<boolean | null>(null);
   const [awarded, setAwarded] = useState(false);
   const router = useRouter();
+  const [points, setPoints] = useState(session?.user?.points);
 
   useEffect(() => {
     const loadModel = async () => {
@@ -62,6 +65,10 @@ const EarnPage = () => {
             }),
           });
 
+          if (points) {
+            setPoints(points + 10);
+          }
+
           const data = await res.json();
           console.log("Points awarded:", data);
           setAwarded(true);
@@ -73,40 +80,63 @@ const EarnPage = () => {
     }
   };
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push('/');
-    }
-  }, [status, router]);
+  // useEffect(() => {
+  //   if (status === "unauthenticated") {
+  //     router.push('/');
+  //   }
+  // }, [status, router]);
 
   return (
     <div className="h-full">
-      <div className="flex flex-col gap-4 justify-center h-full items-center">
-        <h1 className="text-3xl text-white font-semibold">
-          Scan to earn 👌
-        </h1>
-        {!awarded &&
-          <div className="w-xl rounded-2xl bg-amber-300 overflow-hidden h-xl relative">
-            <Webcam
-              ref={webcamRef}
-              audio={false}
-              screenshotFormat="image/jpeg"
-              width="100%"
-              height="100%"
-              videoConstraints={{ facingMode: 'environment' }}
-            />
-            <div className={`${isRecyclable ? "bg-green-400" : "bg-red-400"} absolute bottom-3 p-2 text-white font-semibold rounded-xl left-3 px-3 w-max`}>
-              {isRecyclable === true ? <h3>Recyclable</h3> : <h3>Not Recyclable</h3>}
+      <div className="flex justify-center h-full items-center">
+        <div className='flex flex-col items-center gap-5'>
+          <div className='flex'>
+            {
+              !awarded &&
+              <div className='flex flex-col gap-5 text-center'>
+                <h1 className="text-3xl text-white font-semibold">
+                  Scan to earn 👌
+                </h1>
+                <div className="max-w-md w-full max-sm:rounded-2xl rounded-l-2xl bg-altstroke overflow-hidden text-center h-md relative">
+                  <Webcam
+                    ref={webcamRef}
+                    audio={false}
+                    screenshotFormat="image/jpeg"
+                    width="100%"
+                    height="100%"
+                    videoConstraints={{ facingMode: 'environment' }}
+                  />
+                  <div className={`${isRecyclable ? "bg-green-400" : "bg-red-400"} absolute bottom-3 p-2 text-white font-semibold rounded-xl left-3 px-3 w-max`}>
+                    {isRecyclable === true ? <h3>Recyclable</h3> : <h3>Not Recyclable</h3>}
+                  </div>
+                </div>
+              </div>
+            }
+            {
+              awarded &&
+              <div className='max-w-md w-full max-sm:rounded-2xl max-sm:px-20 h-md p-10 bg-altbg flex flex-col items-center px-30 gap-5 py-16 rounded-l-2xl'>
+                <FaCircleCheck size={150} className='text-green-400' />
+                <div className='text-white text-center'>
+                  <p>Points awarded 😉</p>
+                  <p>Thanks 😊</p>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+        <div className='max-md:hidden border-2 p-4 rounded-3xl flex flex-col gap-5 border-altstroke pt-6'>
+          <div className='flex flex-col gap-3 px-4 items-center'>
+            <span className='text-white/50 font-bold text-xl text-center'>Here are your current <br /> points</span>
+            <span className='text-3xl font-bold text-white'>
+              {session?.user.points}
+              400
+            </span>
+            <div>
+              <Image src="/coins.png" alt='points' width={240} height={240} />
             </div>
           </div>
-        }
-        {awarded && <div className='flex flex-col gap-2'>
-          <FaCircleCheck size={150} className='text-green-400' />
-          <div className='text-white text-center'>
-            <p>Points awarded 😉</p>
-            <p>Thanks 😊</p>
-          </div>
-        </div>}
+          <button className='bg-blue-500 w-full p-3 font-bold text-white rounded-xl'>Redeem</button>
+        </div>
       </div>
     </div>
   );

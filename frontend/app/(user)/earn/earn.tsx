@@ -7,11 +7,12 @@ import { LuCamera } from "react-icons/lu";
 import { redirect } from "next/navigation";
 
 
-export const EarnPage = ({ session } : any) => {
+export const EarnPage = ({ session }: any) => {
   const webcamRef = useRef<Webcam>(null);
   const [model, setModel] = useState<any>(null);
   const [label, setLabel] = useState('Loading...');
   const [isRecyclable, setIsRecyclable] = useState<boolean | null>(null);
+  const [points, setPoints] = useState(session?.user?.points);
 
   useEffect(() => {
     const loadModel = async () => {
@@ -65,6 +66,7 @@ export const EarnPage = ({ session } : any) => {
               points: 10
             }),
           });
+
 
           const data = await res.json();
           console.log("Points awarded:", data);

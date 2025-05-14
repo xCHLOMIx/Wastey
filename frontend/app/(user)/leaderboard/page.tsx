@@ -27,7 +27,7 @@ const page = () => {
     }, [status, router]);
 
     return (
-        <div className="h-full mt-10">
+        <div className="h-full mt-10 overflow-y-scroll overflow-auto bar">
             <div className="flex flex-col gap-3">
                 {leaders.map((leader, index) => (
                     <div key={index} className='flex bg-altbg justify-between border border-stroke p-2 gap-5 items-center font-bold text-white rounded-2xl'>
@@ -43,6 +43,7 @@ const page = () => {
                         </div>
                     </div>
                 ))}
+                <br /><br />
             </div>
         </div>
     )

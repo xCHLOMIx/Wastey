@@ -22,7 +22,7 @@ const links: Link[] = [
 const Sidebar = () => {
     const theLink = usePathname()
     return (
-        <div className='border-r-3 min-w-80 flex flex-col justify-between border-altstroke p-8'>
+        <div className='max-sm:-translate-x-full max-sm:absolute h-screen z-10 bg-bg border-r-3 min-w-80 flex flex-col justify-between border-altstroke p-8'>
             <div className='flex flex-col gap-3'>
                 <div className="">
                     <h1 className='text-3xl text-white font-bold'>Wastey</h1>

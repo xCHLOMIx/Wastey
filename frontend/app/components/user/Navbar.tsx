@@ -15,7 +15,7 @@ declare module 'next-auth' {
 }
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import React from 'react'
+import React, { useState } from 'react'
 
 const Navbar = () => {
   const thePage = usePathname()
