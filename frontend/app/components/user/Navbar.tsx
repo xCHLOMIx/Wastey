@@ -37,7 +37,7 @@ const Navbar = () => {
           <span className='font-semibold text-white'>{session?.user?.points}</span>
         </div>
         <div className='w-11 p-1 rounded-full h-11'>
-          <Image src={session?.user?.image} height={32} width={32} />
+          <Image src={`${session?.user?.image}`} alt='accou' height={32} width={32} />
         </div>
       </div>
     </div>

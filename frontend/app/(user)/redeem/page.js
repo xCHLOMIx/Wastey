@@ -60,7 +60,10 @@ const page = () => {
           <div className="flex mt-10 gap-5 items-center justify-center">
             {rewards.map((reward, index) => (
               <div key={index} className="bg-gray-800 p-4 rounded-lg shadow-lg">
-                <h3 className="text-xl font-bold">{reward.name}</h3>
+                <div>
+                  <LuGift size={25} />
+                  <h3 className="text-xl font-bold">{reward.name}</h3>
+                </div>
                 <p className="text-lg">{reward.points}</p>
                 <p className="text-sm">{reward.description}</p>
                 <button onClick={() => handleRedeem(reward)} className="border cursor-pointer text-white px-4 py-2 rounded-lg mt-2">
