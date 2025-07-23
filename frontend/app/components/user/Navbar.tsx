@@ -25,7 +25,7 @@ const Navbar = () => {
   return (
     <div className='w-full flex justify-between'>
       <div className='flex gap-3 items-center'>
-        <h1 className='text-3xl text-white font-bold capitalize'>{thePage.replace('/', '').toLowerCase()}</h1>
+        <h1 className='text-3xl max-md:text-2xl max-sm:text-xl text-white font-bold capitalize'>{thePage.replace('/', '').toLowerCase()}</h1>
       </div>
       <div className='flex gap-5 items-center'>
         <div className='flex gap-2 bg-white/5 p-3 rounded-2xl'>
