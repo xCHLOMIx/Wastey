@@ -80,16 +80,16 @@ const EarnPage = () => {
     }
   };
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push('/');
-    }
-  }, [status, router]);
+  // useEffect(() => {
+  //   if (status === "unauthenticated") {
+  //     router.push('/');
+  //   }
+  // }, [status, router]);
 
   return (
-    <div className="h-full">
-      <div className="flex justify-center h-full items-center">
-        <div className='flex flex-col items-center gap-5'>
+    <div className="h-full bar">
+      <div className="flex justify-center bar h-full items-center">
+        <div className='flex flex-col items-center'>
           <div className='flex'>
             {
               !awarded &&

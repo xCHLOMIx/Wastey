@@ -5,9 +5,9 @@ import Navbar from '../components/user/Navbar'
 
 const layout = ({ children }: { children: ReactNode }) => {
     return (
-        <div className='bg-bg h-screen flex overflow-hidden'>
+        <div className='bg-bg h-screen flex bar overflow-hidden'>
             <Sidebar />
-            <div className='w-full h-full p-10 overflow-y-scroll'>
+            <div className='w-full h-full p-10 max-md:overflow-y-scroll'>
                 <Navbar />
                 {children}
             </div>
