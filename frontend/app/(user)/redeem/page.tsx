@@ -65,10 +65,10 @@ const page = () => {
 
   return (
     <div className="h-full text-white mt-10">
-      <div className="flex flex-col w-full items-center justify-center">
-        <div className="flex flex-col items-center justify-center mt-10">
-          <h2 className="text-2xl font-bold">Redeem your points for rewards</h2>
-          <p className="text-lg">You have {session?.user?.points} points</p>
+      <div className="flex flex-col w-full justify-center">
+        <div className="flex flex-col justify-center mt-10">
+          <h2 className="text-2xl max-md:text-xl max-sm:text-lg font-bold">Redeem your points for rewards</h2>
+          <p className="text-lg max-md:text-base max-sm:text-sm text-white/70">You have {session?.user?.points} points</p>
         </div>
         <div className="flex w-full">
           <div className="grid grid-cols-3 max-md:grid-cols-1 w-full mt-10 gap-3 items-center justify-center">
