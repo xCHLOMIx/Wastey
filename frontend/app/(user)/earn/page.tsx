@@ -134,7 +134,7 @@ const EarnPage = () => {
               <Image src="/coins.png" alt='points' width={240} height={240} />
             </div>
           </div>
-          <button className='bg-blue-500 w-full p-3 font-bold text-white cursor-pointer rounded-xl' onClick={()=>router.push('/redeem')} >Redeem</button>
+          <button className='bg-stroke w-full p-3 font-bold text-white cursor-pointer rounded-xl' onClick={()=>router.push('/redeem')} >Redeem</button>
         </div>
       </div>
     </div>
