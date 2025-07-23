@@ -73,7 +73,7 @@ const page = () => {
         <div className="flex w-full">
           <div className="grid grid-cols-3 max-md:grid-cols-1 w-full mt-10 gap-3 items-center justify-center">
             {rewards.map((reward, index) => (
-              <Reward key={reward.name} reward={reward} />
+              <Reward key={index} reward={reward} />
             ))}
           </div>
         </div><br /><br /><br /><br /><br />
