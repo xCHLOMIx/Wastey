@@ -53,7 +53,7 @@ export default function Login() {
         </p>
       </div>
       <button
-        className="text-white flex gap-3 mt-10 max-md:mt-6 max-md:text-sm max-sm:text-xs  rounded-xl items-center cursor-pointer hover:bg-white hover:text-black transition duration-300 border my-3 px-4 max-md:px-3 max-sm:py-2 font-semibold py-3"
+        className="text-white flex gap-3 mt-10 max-md:mt-6 max-md:text-sm max-sm:text-xs rounded-xl items-center cursor-pointer hover:bg-altstroke/50 transition duration-300 border-2 border-stroke my-3 px-4 max-md:px-3 max-sm:py-2 font-semibold py-3"
         onClick={() => signIn("google")}
       >
         <Image src="/123.png" alt="Google" width={26} height={26} />
