@@ -10,6 +10,12 @@ interface LeaderInt {
     points: number
 }
 
+const tempLeaders : LeaderInt[] = [
+    { email: "gutabarwaa@gmail.com", points: 100},
+    { email: "credo@gmail.com", points: 50},
+    { email: "chlomi@gmail.com", points: 20},
+]
+
 const page = () => {
     const { data: session, status } = useSession();
     const [leaders, setLeaders] = useState<LeaderInt[]>([])
@@ -35,7 +41,7 @@ const page = () => {
     return (
         <div className="h-full mt-10 overflow-y-scroll overflow-auto bar">
             <div className="flex flex-col gap-3">
-                {leaders.map((leader, index) => (
+                {tempLeaders.map((leader, index) => (
                     <Leader leader={leader} index={index} />
                 ))}
                 <br /><br />
