@@ -15,8 +15,7 @@ declare module 'next-auth' {
 }
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import React, { useState } from 'react'
-import { CiMenuFries } from 'react-icons/ci';
+import React from 'react'
 import { RiMenu2Fill } from 'react-icons/ri';
 
 const Navbar = () => {
@@ -26,9 +25,6 @@ const Navbar = () => {
   return (
     <div className='w-full flex justify-between'>
       <div className='flex gap-3 items-center'>
-        <div className='max-sm:flex hidden'>
-          <RiMenu2Fill size={24} color='white' className='font-bold' />
-        </div>
         <h1 className='text-3xl text-white font-bold capitalize'>{thePage.replace('/', '').toLowerCase()}</h1>
       </div>
       <div className='flex gap-5 items-center'>

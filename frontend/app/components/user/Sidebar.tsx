@@ -24,31 +24,41 @@ const Sidebar = () => {
     const theLink = usePathname()
     const [sidebar, setSidebar] = useState<boolean>(false);
 
-    // const toggleSidebar = () => {
-    //     setSidebar(!sidebar);
-    // }
-
     return (
-        <div className='max-sm:-translate-x-full transition duration-300 max-sm:absolute h-screen z-10 bg-bg border-r-3 min-w-80 flex flex-col justify-between border-altstroke p-8'>
-            <div className='flex flex-col gap-3'>
-                <div className="flex gap-2">
-                    <Image src="/logo.png" alt='logo' width={32} height={24} />
-                    <h1 className='text-3xl text-white font-bold'>Wastey</h1>
-                </div><br />
+        <>
+            <div className='max-md:hidden max-sm:-translate-x-full transition duration-300 max-sm:absolute h-screen z-10 bg-bg border-r-3 min-w-80 flex flex-col justify-between border-altstroke p-8'>
+                <div className='flex flex-col gap-3'>
+                    <div className="flex gap-2">
+                        <Image src="/logo.png" alt='logo' width={32} height={24} />
+                        <h1 className='text-3xl text-white font-bold'>Wastey</h1>
+                    </div><br />
+                    {links.map((link) => (
+                        <Link href={`/${link.text}`} key={link.text}>
+                            <div className={`text-white ${theLink?.includes(link.text) ? "bg-altbg border-stroke" : "hover:bg-altbg/40"} transition duration-300 p-5 cursor-pointer rounded-2xl border-2 border-bg flex gap-6`}>
+                                {link.icon}
+                                <h2 className='capitalize'>{`${link.text}`}</h2>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+                <div onClick={() => signOut()} className={`text-white transition duration-300 hover:bg-altbg/40 p-5 cursor-pointer rounded-2xl border-2 border-bg flex gap-6`}>
+                    <LuLogOut size={24} />
+                    <h2>Log out</h2>
+                </div>
+            </div>
+            <div className='max-md:flex fixed border-t-2 border-t-stroke bottom-0 max-sm:absolute z-10 bg-bg w-full hidden justify-between border-altstroke p-2'>
                 {links.map((link) => (
                     <Link href={`/${link.text}`} key={link.text}>
-                    <div className={`text-white ${theLink?.includes(link.text) ? "bg-altbg border-stroke" : "hover:bg-altbg/40"} transition duration-300 p-5 cursor-pointer rounded-2xl border-2 border-bg flex gap-6`}>
-                        {link.icon}
-                        <h2 className='capitalize'>{`${link.text}`}</h2>
-                    </div>
+                        <div className={`text-white ${theLink?.includes(link.text) ? "bg-altbg border-stroke" : "hover:bg-altbg/40"} transition duration-300 p-5 cursor-pointer rounded-2xl border-2 border-bg flex gap-6`}>
+                            {link.icon}
+                        </div>
                     </Link>
                 ))}
+                <div onClick={() => signOut()} className={`text-white transition duration-300 hover:bg-altbg/40 p-5 cursor-pointer rounded-2xl border-2 border-bg flex gap-6`}>
+                    <LuLogOut size={24} />
+                </div>
             </div>
-            <div onClick={() => signOut()} className={`text-white transition duration-300 hover:bg-altbg/40 p-5 cursor-pointer rounded-2xl border-2 border-bg flex gap-6`}>
-                <LuLogOut size={24} />
-                <h2>Log out</h2>
-            </div>
-        </div >
+        </>
     )
 }
 

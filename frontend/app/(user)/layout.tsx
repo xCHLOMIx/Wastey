@@ -7,7 +7,7 @@ const layout = ({ children }: { children: ReactNode }) => {
     return (
         <div className='bg-bg h-screen flex overflow-hidden'>
             <Sidebar />
-            <div className='w-full h-full p-10'>
+            <div className='w-full h-full p-10 overflow-y-scroll'>
                 <Navbar />
                 {children}
             </div>

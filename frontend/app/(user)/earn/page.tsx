@@ -80,11 +80,11 @@ const EarnPage = () => {
     }
   };
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push('/');
-    }
-  }, [status, router]);
+  // useEffect(() => {
+  //   if (status === "unauthenticated") {
+  //     router.push('/');
+  //   }
+  // }, [status, router]);
 
   return (
     <div className="h-full">
@@ -97,7 +97,7 @@ const EarnPage = () => {
                 <h1 className="text-3xl text-white font-semibold">
                   Scan to earn 👌
                 </h1>
-                <div className="max-w-md w-full max-sm:rounded-2xl rounded-l-2xl bg-altstroke overflow-hidden text-center h-md relative">
+                <div className="max-w-md w-full max-sm:rounded-2xl rounded-l-2xl max-md:rounded-2xl bg-altstroke overflow-hidden text-center h-md relative">
                   <Webcam
                     ref={webcamRef}
                     audio={false}
